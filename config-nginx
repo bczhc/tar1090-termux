@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+# $1: file
+# $2: old string (no space)
+# $3: new string
+function replace() {
+    echo "replace: $1, $2, $3"
+    ruby -e "puts STDIN.read.gsub('$2', ARGV[0])" "$3" < "$1" | sponge "$1"
+}
+
+mkdir readsb || true
+
+cp nginx.conf tar1090-nginx.conf
+replace tar1090-nginx.conf INSTANCE tar1090
+replace tar1090-nginx.conf SERVICE tar1090
+replace tar1090-nginx.conf SOURCE_DIR "$(pwd)"/readsb
+replace tar1090-nginx.conf HTMLPATH "$(pwd)"/html
+
+cp nginx-root/nginx.conf.t nginx-root/nginx.conf
+replace nginx-root/nginx.conf TAR1090_INCLUDE "$(pwd)"/tar1090-nginx.conf

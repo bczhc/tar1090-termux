@@ -1,0 +1,3 @@
+#!/bin/bash
+
+nginx -p "$(pwd)"/nginx-root/ -c nginx.conf

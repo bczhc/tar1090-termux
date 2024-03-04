@@ -362,3 +362,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+/readsb/
+/tar1090-nginx.conf
+/nginx-root/nginx.conf
