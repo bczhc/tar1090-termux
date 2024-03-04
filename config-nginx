@@ -3,6 +3,13 @@
 set -e
 
 # $1: file
+function sponge() {
+    tmp_file="$(mktemp)"
+    cat > "$tmp_file"
+    mv "$tmp_file" "$1"
+}
+
+# $1: file
 # $2: old string (no space)
 # $3: new string
 function replace() {
