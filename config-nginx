@@ -20,6 +20,7 @@ function replace() {
 mkdir readsb || true
 
 cp nginx.conf tar1090-nginx.conf
+cat tar1090-nginx.conf | rg -v 'gzip_static' | sponge tar1090-nginx.conf
 replace tar1090-nginx.conf INSTANCE tar1090
 replace tar1090-nginx.conf SERVICE tar1090
 replace tar1090-nginx.conf SOURCE_DIR "$(pwd)"/readsb
